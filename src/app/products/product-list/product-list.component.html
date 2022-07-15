@@ -1,0 +1,52 @@
+<div class="product-list">
+  <div class="filter">
+    <h2>Filter</h2>
+    <input [formControl]="searchInput" type="text" class="search-box" placeholder="Search...">
+
+    <div class="color-filters">
+      <div *ngFor="let color of colors">
+        <div [style]="{background: color}" class="color-box" (click)="filterColor(color)">
+          <span *ngIf="filteredColors.has(color)">✓</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="table">
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Color</th>
+        <th>Type</th>
+        <th>Cost</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{product.name}}</td>
+        <td>
+          <div [style]="{background: product.color}" class="color-box"></div>
+        </td>
+        <td>{{product.type}}</td>
+        <td>{{product.price | currency}}</td>
+        <td>
+          <button class="edit-button" [routerLink]="'/product-detail/' + product.sku">Edit</button>
+          <button class="delete-button" (click)="delete(product.sku)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td>
+          <button *ngIf="page !== 0" (click)="navigatePage(true)"><< Prev</button>
+          Page {{page + 1}} of {{totalPages}}
+          <button *ngIf="page < totalPages - 1" (click)="navigatePage()">Next >></button>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+
