@@ -36,7 +36,7 @@
         </td>
       </tr>
       </tbody>
-      <tfoot>
+      <tfoot *ngIf="totalPages > 1">
       <tr>
         <td>
           <button (click)="navigatePage(true)" *ngIf="page !== 0"><< Prev</button>

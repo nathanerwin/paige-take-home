@@ -32,7 +32,11 @@ export class ProductListComponent implements OnInit {
 
     this.searchInput.valueChanges
       .pipe(
-        tap(x => this.products = []),
+        tap(x => {
+          this.page = 0
+          this.totalCount = 0
+          this.products = []
+        }),
         mergeMap((query) => this.filter()))
       .subscribe((res) => this.setData(res))
   }
@@ -40,6 +44,7 @@ export class ProductListComponent implements OnInit {
   public setData(res: PagedProductInterface): void {
     this.products = res.data
     this.totalCount = res.totalCount
+    this.page = res.page
     this.totalPages = Math.ceil(this.totalCount / 10)
   }
 
