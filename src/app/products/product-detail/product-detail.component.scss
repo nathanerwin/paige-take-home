@@ -1,5 +1,6 @@
 form {
   max-width: 500px;
+
   div {
     display: flex;
     flex-direction: column;
@@ -7,9 +8,10 @@ form {
 
     label {
       font-weight: 500;
-      color: rgba(0,0,0,0.8);
+      color: rgba(0, 0, 0, 0.8);
       margin-bottom: 5px;
     }
+
     input {
       padding: 5px;
       border: 1px solid rgba(0, 0, 0, 0.08);

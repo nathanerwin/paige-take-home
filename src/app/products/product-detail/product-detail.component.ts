@@ -24,10 +24,11 @@ export class ProductDetailComponent implements OnInit {
     private productsService: ProductsService,
     private activatedRoute: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params)=> {
+    this.activatedRoute.params.subscribe((params) => {
       this.product = this.productsService.get(params['sku'])
 
       if (this.product) {

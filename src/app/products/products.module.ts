@@ -14,7 +14,7 @@ const routes: Routes = [
     path: 'product-detail/:sku',
     component: ProductDetailComponent
   },
-  { path: '**', redirectTo: '/product-list'}
+  {path: '**', redirectTo: '/product-list'}
 ];
 
 

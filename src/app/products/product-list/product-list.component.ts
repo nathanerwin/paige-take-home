@@ -37,7 +37,7 @@ export class ProductListComponent implements OnInit {
       .subscribe((res) => this.setData(res))
   }
 
-  public setData(res: PagedProductInterface) {
+  public setData(res: PagedProductInterface): void {
     this.products = res.data
     this.totalCount = res.totalCount
     this.totalPages = Math.ceil(this.totalCount / 10)
@@ -46,10 +46,6 @@ export class ProductListComponent implements OnInit {
   public filterColor(color: string): void {
     this.filteredColors.has(color) ? this.filteredColors.delete(color) : this.filteredColors.add(color)
     this.filter().subscribe((res) => this.setData(res))
-  }
-
-  private filter(): Observable<PagedProductInterface> {
-    return this.productService.getPaged(this.page, this.searchInput.value, Array.from(this.filteredColors) as string[])
   }
 
   public navigatePage(down = false): void {
@@ -63,6 +59,10 @@ export class ProductListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res => {
       if (res) this.productService.delete(sku)
     })
+  }
+
+  private filter(): Observable<PagedProductInterface> {
+    return this.productService.getPaged(this.page, this.searchInput.value, Array.from(this.filteredColors) as string[])
   }
 
 }
